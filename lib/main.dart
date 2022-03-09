@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:food_delivery/helper/dependencies.dart' as dep;
 import 'package:food_delivery/pages/home/food/popular_food_detail.dart';
 import 'package:food_delivery/pages/home/food/recomended_food_detail.dart';
 import 'package:food_delivery/pages/home/food_page_body.dart';
@@ -6,7 +7,9 @@ import 'package:food_delivery/pages/home/food_page_body.dart';
 import 'package:food_delivery/pages/home/main_food_page.dart';
 import 'package:get/get.dart';
 
-void main() {
+void main() async {
+  WidgetsFlutterBinding.ensureInitialized();
+  await dep.init();
   runApp(const MyApp());
 }
 
