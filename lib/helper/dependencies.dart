@@ -7,7 +7,7 @@ Future<void> init() async {
   //api client
   Get.lazyPut(
     () => ApiClient(
-      appBaseUrl: "https://www.dbestech.com",
+      appBaseUrl: "http://mvs.bslmeiyu.com",
     ),
   );
   //repos

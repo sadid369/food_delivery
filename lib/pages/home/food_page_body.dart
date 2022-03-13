@@ -119,7 +119,7 @@ class _FoodPageBodyState extends State<FoodPageBody> {
                     decoration: BoxDecoration(
                       image: DecorationImage(
                         fit: BoxFit.cover,
-                        image: AssetImage("assets/image/Fish.jpg"),
+                        image: AssetImage("assets/image/food0.png"),
                       ),
                       color: Colors.white38,
                       borderRadius: BorderRadius.circular(
@@ -228,7 +228,7 @@ class _FoodPageBodyState extends State<FoodPageBody> {
                 color: index.isEven ? Color(0xFF69c5df) : Color(0xFF9294cc),
                 image: DecorationImage(
                     fit: BoxFit.cover,
-                    image: AssetImage("assets/image/Burger.jpg"))),
+                    image: AssetImage("assets/image/food0.png"))),
           ),
           Align(
             alignment: Alignment.bottomCenter,

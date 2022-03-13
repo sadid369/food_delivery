@@ -33,7 +33,7 @@ class _PopularFoodDetailState extends State<PopularFoodDetail> {
                 image: DecorationImage(
                   fit: BoxFit.cover,
                   image: AssetImage(
-                    "assets/image/Burger.jpg",
+                    "assets/image/food0.png",
                   ),
                 ),
               ),
