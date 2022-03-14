@@ -1,3 +1,4 @@
+import 'package:food_delivery/utils/app_constants.dart';
 import 'package:get/get.dart';
 
 class ApiClient extends GetConnect implements GetxService {
@@ -6,6 +7,7 @@ class ApiClient extends GetConnect implements GetxService {
   late Map<String, String> _mainHeaders;
 
   ApiClient({required this.appBaseUrl}) {
+    token = AppConstants.TOKEN;
     baseUrl = appBaseUrl;
     timeout = Duration(seconds: 30);
     _mainHeaders = {
