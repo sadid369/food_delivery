@@ -1,4 +1,7 @@
+// ignore_for_file: prefer_const_constructors
+
 import 'package:flutter/material.dart';
+import 'package:food_delivery/pages/home/main_food_page.dart';
 import 'package:food_delivery/utils/colors.dart';
 import 'package:food_delivery/utils/dimentions.dart';
 import 'package:food_delivery/widgets/app_column.dart';
@@ -7,6 +10,7 @@ import 'package:food_delivery/widgets/big_text.dart';
 import 'package:food_delivery/widgets/exandable_text_widget.dart';
 import 'package:food_delivery/widgets/icon_and_text_widget.dart';
 import 'package:food_delivery/widgets/small_text.dart';
+import 'package:get/get.dart';
 
 class PopularFoodDetail extends StatefulWidget {
   const PopularFoodDetail({Key? key}) : super(key: key);
@@ -46,9 +50,15 @@ class _PopularFoodDetailState extends State<PopularFoodDetail> {
             right: Dimensions.width20,
             child: Row(
               mainAxisAlignment: MainAxisAlignment.spaceBetween,
+              // ignore: prefer_const_literals_to_create_immutables
               children: [
-                AppIcon(
-                  icon: Icons.arrow_back_ios,
+                GestureDetector(
+                  onTap: () {
+                    Get.to(() => MainFoodPage());
+                  },
+                  child: AppIcon(
+                    icon: Icons.arrow_back_ios,
+                  ),
                 ),
                 AppIcon(
                   icon: Icons.shopping_cart_outlined,
