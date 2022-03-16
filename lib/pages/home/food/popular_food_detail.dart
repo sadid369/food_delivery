@@ -1,6 +1,10 @@
 // ignore_for_file: prefer_const_constructors
 
 import 'package:flutter/material.dart';
+import 'package:food_delivery/controllers/popular_products_controller.dart';
+import 'package:food_delivery/utils/app_constants.dart';
+import 'package:get/get.dart';
+
 import 'package:food_delivery/pages/home/main_food_page.dart';
 import 'package:food_delivery/utils/colors.dart';
 import 'package:food_delivery/utils/dimentions.dart';
@@ -10,18 +14,19 @@ import 'package:food_delivery/widgets/big_text.dart';
 import 'package:food_delivery/widgets/exandable_text_widget.dart';
 import 'package:food_delivery/widgets/icon_and_text_widget.dart';
 import 'package:food_delivery/widgets/small_text.dart';
-import 'package:get/get.dart';
 
-class PopularFoodDetail extends StatefulWidget {
-  const PopularFoodDetail({Key? key}) : super(key: key);
+class PopularFoodDetail extends StatelessWidget {
+  final int pageId;
+  PopularFoodDetail({
+    required this.pageId,
+  });
 
-  @override
-  State<PopularFoodDetail> createState() => _PopularFoodDetailState();
-}
-
-class _PopularFoodDetailState extends State<PopularFoodDetail> {
   @override
   Widget build(BuildContext context) {
+    var product =
+        Get.find<PopularProductController>().popularProductList[pageId];
+    // print("page is ID " + pageId.toString());
+    // print("product name is " + product.name.toString());
     return Scaffold(
       backgroundColor: Colors.white,
       body: Stack(
@@ -36,9 +41,9 @@ class _PopularFoodDetailState extends State<PopularFoodDetail> {
               decoration: BoxDecoration(
                 image: DecorationImage(
                   fit: BoxFit.cover,
-                  image: AssetImage(
-                    "assets/image/food0.png",
-                  ),
+                  image: NetworkImage(AppConstants.BASE_URL +
+                      AppConstants.UPLOAD_URL +
+                      product.img!),
                 ),
               ),
             ),
@@ -88,7 +93,7 @@ class _PopularFoodDetailState extends State<PopularFoodDetail> {
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
                   AppColumn(
-                    text: "Chinese Side",
+                    text: product.name!,
                   ),
                   SizedBox(
                     height: Dimensions.height20,
@@ -100,9 +105,7 @@ class _PopularFoodDetailState extends State<PopularFoodDetail> {
                   // ignore: prefer_const_constructors
                   Expanded(
                     child: SingleChildScrollView(
-                      child: ExpandableTextWidget(
-                          text:
-                              "Has your mouth ever started to water as you  got a whiff of a delicious burger? Have you ever become really hungry after seeing the wonderful site of a hamburger? Do you know the feeling of special sauce oozing onto you fingers as you take your first bite into Has your mouth ever started to water as you got a whiff of a delicious burger? Have you ever become really hungry after seeing the wonderful site of a hamburger? Do you know the feeling of special sauce oozing onto you fingers as you take your first bite intoHas your mouth ever started to water as you  got a whiff of a delicious burger? Have you ever become really hungry after seeing the wonderful site of a hamburger? Do you know the feeling of special sauce oozing onto you fingers as you take your first bite into Has your mouth ever started to water as you got a whiff of a delicious burger? Have you ever become really hungry after seeing the wonderful site of a hamburger? Do you know the feeling of special sauce oozing onto you fingers as you take your first bite intoHas your mouth ever started to water as you  got a whiff of a delicious burger? Have you ever become really hungry after seeing the wonderful site of a hamburger? Do you know the feeling of special sauce oozing onto you fingers as you take your first bite into Has your mouth ever started to water as you got a whiff of a delicious burger? Have you ever become really hungry after seeing the wonderful site of a hamburger? Do you know the feeling of special sauce oozing onto you fingers as you take your first bite intoHas your mouth ever started to water as you  got a whiff of a delicious burger? Have you ever become really hungry after seeing the wonderful site of a hamburger? Do you know the feeling of special sauce oozing onto you fingers as you take your first bite into Has your mouth ever started to water as you got a whiff of a delicious burger? Have you ever become really hungry after seeing the wonderful site of a hamburger? Do you know the feeling of special sauce oozing onto you fingers as you take your first bite into"),
+                      child: ExpandableTextWidget(text: product.description!),
                     ),
                   ),
                 ],
@@ -173,7 +176,7 @@ class _PopularFoodDetailState extends State<PopularFoodDetail> {
               right: Dimensions.width20,
             ),
             child: BigText(
-              text: "\$10 | Add to cart",
+              text: "\$ ${product.price!} | Add to cart",
               color: Colors.white,
             ),
             decoration: BoxDecoration(

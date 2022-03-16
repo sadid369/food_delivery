@@ -1,17 +1,26 @@
 import 'package:flutter/material.dart';
+import 'package:food_delivery/controllers/popular_products_controller.dart';
+import 'package:food_delivery/controllers/recommended_product_contoller.dart';
+import 'package:food_delivery/utils/app_constants.dart';
+import 'package:get/get.dart';
+
 import 'package:food_delivery/routes/route_helper.dart';
 import 'package:food_delivery/utils/colors.dart';
 import 'package:food_delivery/utils/dimentions.dart';
 import 'package:food_delivery/widgets/app_icon.dart';
 import 'package:food_delivery/widgets/big_text.dart';
 import 'package:food_delivery/widgets/exandable_text_widget.dart';
-import 'package:get/get.dart';
 
 class RecommenedFoodDetail extends StatelessWidget {
-  const RecommenedFoodDetail({Key? key}) : super(key: key);
+  final int pageId;
+  RecommenedFoodDetail({
+    required this.pageId,
+  });
 
   @override
   Widget build(BuildContext context) {
+    var product =
+        Get.find<RecommendedProductController>().recommendedProductList[pageId];
     return Scaffold(
       backgroundColor: Colors.white,
       body: CustomScrollView(
@@ -35,7 +44,7 @@ class RecommenedFoodDetail extends StatelessWidget {
               child: Container(
                 child: Center(
                     child: BigText(
-                  text: "Chinese Side",
+                  text: product.name!,
                   size: Dimensions.font26,
                 )),
                 width: double.maxFinite,
@@ -58,8 +67,8 @@ class RecommenedFoodDetail extends StatelessWidget {
             backgroundColor: AppColors.yellowColor,
             expandedHeight: 300,
             flexibleSpace: FlexibleSpaceBar(
-              background: Image.asset(
-                "assets/image/food0.png",
+              background: Image.network(
+                AppConstants.BASE_URL + AppConstants.UPLOAD_URL + product.img!,
                 width: double.maxFinite,
                 fit: BoxFit.cover,
               ),
@@ -69,9 +78,7 @@ class RecommenedFoodDetail extends StatelessWidget {
               child: Column(
             children: [
               Container(
-                child: ExpandableTextWidget(
-                    text:
-                        "Has your mouth ever started to water as you  got a whiff of a delicious burger? Have you ever become really hungry after seeing the wonderful site of a hamburger? Do you know the feeling of special sauce oozing onto you fingers as you take your first bite into Has your mouth ever started to water as you got a whiff of a delicious burger? Have you ever become really hungry after seeing the wonderful site of a hamburger? Do you know the feeling of special sauce oozing onto you fingers as you take your first bite intoHas your mouth ever started to water as you  got a whiff of a delicious burger? Have you ever become really hungry after seeing the wonderful site of a hamburger? Do you know the feeling of special sauce oozing onto you fingers as you take your first bite into Has your mouth ever started to water as you got a whiff of a delicious burger? Have you ever become really hungry after seeing the wonderful site of a hamburger? Do you know the feeling of special sauce oozing onto you fingers as you take your first bite intoHas your mouth ever started to water as you  got a whiff of a delicious burger? Have you ever become really hungry after seeing the wonderful site of a hamburger? Do you know the feeling of special sauce oozing onto you fingers as you take your first bite into Has your mouth ever started to water as you got a whiff of a delicious burger? Have you ever become really hungry after seeing the wonderful site of a hamburger? Do you know the feeling of special sauce oozing onto you fingers as you take your first bite intoHas your mouth ever started to water as you  got a whiff of a delicious burger? Have you ever become really hungry after seeing the wonderful site of a hamburger? Do you know the feeling of special sauce oozing onto you fingers as you take your first bite into Has your mouth ever started to water as you got a whiff of a delicious burger? Have you ever become really hungry after seeing the wonderful site of a hamburger? Do you know the feeling of special sauce oozing onto you fingers as you take your first bite into Has your mouth ever started to water as you  got a whiff of a delicious burger? Have you ever become really hungry after seeing the wonderful site of a hamburger? Do you know the feeling of special sauce oozing onto you fingers as you take your first bite into Has your mouth ever started to water as you got a whiff of a delicious burger? Have you ever become really hungry after seeing the wonderful site of a hamburger? Do you know the feeling of special sauce oozing onto you fingers as you take your first bite intoHas your mouth ever started to water as you  got a whiff of a delicious burger? Have you ever become really hungry after seeing the wonderful site of a hamburger? Do you know the feeling of special sauce oozing onto you fingers as you take your first bite into Has your mouth ever started to water as you got a whiff of a delicious burger? Have you ever become really hungry after seeing the wonderful site of a hamburger? Do you know the feeling of special sauce oozing onto you fingers as you take your first bite intoHas your mouth ever started to water as you  got a whiff of a delicious burger? Have you ever become really hungry after seeing the wonderful site of a hamburger? Do you know the feeling of special sauce oozing onto you fingers as you take your first bite into Has your mouth ever started to water as you got a whiff of a delicious burger? Have you ever become really hungry after seeing the wonderful site of a hamburger? Do you know the feeling of special sauce oozing onto you fingers as you take your first bite intoHas your mouth ever started to water as you  got a whiff of a delicious burger? Have you ever become really hungry after seeing the wonderful site of a hamburger? Do you know the feeling of special sauce oozing onto you fingers as you take your first bite into Has your mouth ever started to water as you got a whiff of a delicious burger? Have you ever become really hungry after seeing the wonderful site of a hamburger? Do you know the feeling of special sauce oozing onto you fingers as you take your first bite into"),
+                child: ExpandableTextWidget(text: product.description!),
                 margin: EdgeInsets.only(
                   left: Dimensions.width20,
                   right: Dimensions.width20,
@@ -100,7 +107,7 @@ class RecommenedFoodDetail extends StatelessWidget {
                   iconSize: Dimensions.iconSize24,
                 ),
                 BigText(
-                  text: "\$12.88 " + " X " + " 0 ",
+                  text: "\$ ${product.price!} X  0 ",
                   color: AppColors.mainBlackColor,
                   size: Dimensions.font26,
                 ),
