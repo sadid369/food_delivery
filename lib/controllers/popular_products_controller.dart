@@ -1,5 +1,8 @@
+import 'dart:io';
+
 import 'package:flutter/material.dart';
 import 'package:food_delivery/colors.dart';
+import 'package:food_delivery/controllers/cart_controller.dart';
 import 'package:food_delivery/models/products_model.dart';
 import 'package:get/get.dart';
 
@@ -20,6 +23,7 @@ class PopularProductController extends GetxController {
   int get quantity => _quantity;
   int _intCartItem = 0;
   int get inCartItem => _intCartItem + _quantity;
+  late CartController _cart;
   Future<void> getPopularProductList() async {
     Response response = await popularProductRepo.getPopularProductList();
 
@@ -65,10 +69,31 @@ class PopularProductController extends GetxController {
     }
   }
 
-  void initProduct() {
+  void initProduct(ProductModel product, CartController cart) {
     _quantity = 0;
     _intCartItem = 0;
+    _cart = cart;
+    var exist = false;
+    exist = _cart.existInCart(product);
     //if exist
     // get from storage _inCartItems =
+    print("${exist}");
+  }
+
+  void addItem(ProductModel product) {
+    if (_quantity > 0) {
+      _cart.addItem(product, _quantity);
+      _quantity = 0;
+      _cart.items.forEach((key, value) {
+        print("ID: ${value.id} Quantity: ${value.quantity}");
+      });
+    } else {
+      Get.snackbar(
+        "Item Count",
+        "You Should at least add item in the cart",
+        backgroundColor: AppColors.mainColor,
+        colorText: Colors.white,
+      );
+    }
   }
 }

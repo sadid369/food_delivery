@@ -1,6 +1,7 @@
 // ignore_for_file: prefer_const_constructors
 
 import 'package:flutter/material.dart';
+import 'package:food_delivery/controllers/cart_controller.dart';
 import 'package:food_delivery/controllers/popular_products_controller.dart';
 import 'package:food_delivery/utils/app_constants.dart';
 import 'package:get/get.dart';
@@ -30,7 +31,8 @@ class _PopularFoodDetailState extends State<PopularFoodDetail> {
   Widget build(BuildContext context) {
     var product =
         Get.find<PopularProductController>().popularProductList[widget.pageId];
-    Get.find<PopularProductController>().initProduct();
+    Get.find<PopularProductController>()
+        .initProduct(product, Get.find<CartController>());
     // print("page is ID " + pageId.toString());
     // print("product name is " + product.name.toString());
     return Scaffold(
@@ -194,9 +196,14 @@ class _PopularFoodDetailState extends State<PopularFoodDetail> {
                         left: Dimensions.width20,
                         right: Dimensions.width20,
                       ),
-                      child: BigText(
-                        text: "\$ ${product.price!} | Add to cart",
-                        color: Colors.white,
+                      child: GestureDetector(
+                        onTap: () {
+                          popularProduct.addItem(product);
+                        },
+                        child: BigText(
+                          text: "\$ ${product.price!} | Add to cart",
+                          color: Colors.white,
+                        ),
                       ),
                       decoration: BoxDecoration(
                         borderRadius: BorderRadius.circular(
