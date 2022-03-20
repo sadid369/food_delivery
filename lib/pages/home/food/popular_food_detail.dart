@@ -73,40 +73,42 @@ class _PopularFoodDetailState extends State<PopularFoodDetail> {
                       icon: Icons.arrow_back_ios,
                     ),
                   ),
-                  GetBuilder<PopularProductController>(builder: (controller) {
-                    return Stack(
-                      // ignore: prefer_const_literals_to_create_immutables
-                      children: [
-                        AppIcon(
-                          icon: Icons.shopping_cart_outlined,
-                        ),
-                        Get.find<PopularProductController>().totalItems >= 1
-                            ? Positioned(
-                                right: 0,
-                                top: 0,
-                                child: AppIcon(
-                                  icon: Icons.circle,
-                                  size: 20,
-                                  iconColor: Colors.transparent,
-                                  backGroundColor: AppColors.mainColor,
-                                ),
-                              )
-                            : Container(),
-                        Get.find<PopularProductController>().totalItems >= 1
-                            ? Positioned(
-                                right: 4,
-                                top: 4,
-                                child: BigText(
-                                  text: Get.find<PopularProductController>()
-                                      .totalItems
-                                      .toString(),
-                                  size: 12,
-                                  color: Colors.white,
-                                ))
-                            : Container(),
-                      ],
-                    );
-                  })
+                  GetBuilder<PopularProductController>(
+                    builder: (controller) {
+                      return Stack(
+                        // ignore: prefer_const_literals_to_create_immutables
+                        children: [
+                          AppIcon(
+                            icon: Icons.shopping_cart_outlined,
+                          ),
+                          Get.find<PopularProductController>().totalItems >= 1
+                              ? Positioned(
+                                  right: 0,
+                                  top: 0,
+                                  child: AppIcon(
+                                    icon: Icons.circle,
+                                    size: 20,
+                                    iconColor: Colors.transparent,
+                                    backGroundColor: AppColors.mainColor,
+                                  ),
+                                )
+                              : Container(),
+                          Get.find<PopularProductController>().totalItems >= 1
+                              ? Positioned(
+                                  right: 4,
+                                  top: 4,
+                                  child: BigText(
+                                    text: Get.find<PopularProductController>()
+                                        .totalItems
+                                        .toString(),
+                                    size: 12,
+                                    color: Colors.white,
+                                  ))
+                              : Container(),
+                        ],
+                      );
+                    },
+                  ),
                 ],
               ),
             ),
@@ -220,27 +222,27 @@ class _PopularFoodDetailState extends State<PopularFoodDetail> {
                         ],
                       ),
                     ),
-                    Container(
-                      padding: EdgeInsets.only(
-                        top: Dimensions.height20,
-                        bottom: Dimensions.height20,
-                        left: Dimensions.width20,
-                        right: Dimensions.width20,
-                      ),
-                      child: GestureDetector(
-                        onTap: () {
-                          popularProduct.addItem(product);
-                        },
+                    GestureDetector(
+                      onTap: () {
+                        popularProduct.addItem(product);
+                      },
+                      child: Container(
+                        padding: EdgeInsets.only(
+                          top: Dimensions.height20,
+                          bottom: Dimensions.height20,
+                          left: Dimensions.width20,
+                          right: Dimensions.width20,
+                        ),
                         child: BigText(
                           text: "\$ ${product.price!} | Add to cart",
                           color: Colors.white,
                         ),
-                      ),
-                      decoration: BoxDecoration(
-                        borderRadius: BorderRadius.circular(
-                          Dimensions.radius20,
+                        decoration: BoxDecoration(
+                          borderRadius: BorderRadius.circular(
+                            Dimensions.radius20,
+                          ),
+                          color: AppColors.mainColor,
                         ),
-                        color: AppColors.mainColor,
                       ),
                     )
                   ]),

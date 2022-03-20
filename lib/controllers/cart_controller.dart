@@ -62,6 +62,14 @@ class CartController extends GetxController {
     }
   }
 
+  /// return true or false based on ProductModel instance. example -
+  ///  bool existInCart(ProductModel product) {
+  ///   if (_items.containsKey(product.id)) {
+  ///     return true;
+  ///   } else {
+  ///     return false;
+  ///    }
+  ///  }
   bool existInCart(ProductModel product) {
     if (_items.containsKey(product.id)) {
       return true;
@@ -70,6 +78,7 @@ class CartController extends GetxController {
     }
   }
 
+  ///return quantity of ProductModel
   int getQuantity(ProductModel product) {
     var quantity = 0;
     if (_items.containsKey(product.id)) {
