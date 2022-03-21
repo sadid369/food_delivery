@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:food_delivery/controllers/cart_controller.dart';
 import 'package:food_delivery/controllers/popular_products_controller.dart';
 import 'package:food_delivery/controllers/recommended_product_contoller.dart';
+import 'package:food_delivery/pages/cart/cart_page.dart';
 import 'package:food_delivery/utils/app_constants.dart';
 import 'package:get/get.dart';
 
@@ -54,11 +55,16 @@ class RecommenedFoodDetail extends StatelessWidget {
                               ? Positioned(
                                   right: 0,
                                   top: 0,
-                                  child: AppIcon(
-                                    icon: Icons.circle,
-                                    size: 20,
-                                    iconColor: Colors.transparent,
-                                    backGroundColor: AppColors.mainColor,
+                                  child: GestureDetector(
+                                    onTap: () {
+                                      Get.to(() => CartPage());
+                                    },
+                                    child: AppIcon(
+                                      icon: Icons.circle,
+                                      size: 20,
+                                      iconColor: Colors.transparent,
+                                      backGroundColor: AppColors.mainColor,
+                                    ),
                                   ),
                                 )
                               : Container(),

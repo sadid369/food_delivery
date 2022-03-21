@@ -1,7 +1,10 @@
+// ignore_for_file: prefer_const_constructors
+
 import 'package:flutter/material.dart';
 import 'package:food_delivery/controllers/popular_products_controller.dart';
 import 'package:food_delivery/controllers/recommended_product_contoller.dart';
 import 'package:food_delivery/helper/dependencies.dart' as dep;
+import 'package:food_delivery/pages/cart/cart_page.dart';
 import 'package:food_delivery/pages/home/food/popular_food_detail.dart';
 import 'package:food_delivery/pages/home/food/recomended_food_detail.dart';
 import 'package:food_delivery/pages/home/food_page_body.dart';
