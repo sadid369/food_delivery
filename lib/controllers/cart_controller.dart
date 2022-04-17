@@ -25,6 +25,7 @@ class CartController extends GetxController {
           quantity: value.quantity! + quantity,
           time: DateTime.now().toString(),
           isExist: true,
+          product: product,
         );
       });
       if (totalQuantity <= 0) {
@@ -41,14 +42,14 @@ class CartController extends GetxController {
               print("quantity is ${value.quantity}");
             });
             return CartModel(
-              id: product.id,
-              price: product.price,
-              name: product.name,
-              img: product.img,
-              quantity: quantity,
-              time: DateTime.now().toString(),
-              isExist: true,
-            );
+                id: product.id,
+                price: product.price,
+                name: product.name,
+                img: product.img,
+                quantity: quantity,
+                time: DateTime.now().toString(),
+                isExist: true,
+                product: product);
           },
         );
       } else {
@@ -60,6 +61,7 @@ class CartController extends GetxController {
         );
       }
     }
+    update();
   }
 
   /// return true or false based on ProductModel instance. example -

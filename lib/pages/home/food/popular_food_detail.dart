@@ -4,6 +4,7 @@ import 'package:flutter/material.dart';
 import 'package:food_delivery/controllers/cart_controller.dart';
 import 'package:food_delivery/controllers/popular_products_controller.dart';
 import 'package:food_delivery/pages/cart/cart_page.dart';
+import 'package:food_delivery/routes/route_helper.dart';
 import 'package:food_delivery/utils/app_constants.dart';
 import 'package:get/get.dart';
 
@@ -76,42 +77,43 @@ class _PopularFoodDetailState extends State<PopularFoodDetail> {
                   ),
                   GetBuilder<PopularProductController>(
                     builder: (controller) {
-                      return Stack(
-                        // ignore: prefer_const_literals_to_create_immutables
-                        children: [
-                          AppIcon(
-                            icon: Icons.shopping_cart_outlined,
-                          ),
-                          Get.find<PopularProductController>().totalItems >= 1
-                              ? Positioned(
-                                  right: 0,
-                                  top: 0,
-                                  child: GestureDetector(
-                                    onTap: () {
-                                      Get.to(() => CartPage());
-                                    },
+                      return GestureDetector(
+                        onTap: () {
+                          if (controller.totalItems >= 1)
+                            Get.toNamed(RouteHelper.getCartPage());
+                        },
+                        child: Stack(
+                          // ignore: prefer_const_literals_to_create_immutables
+                          children: [
+                            AppIcon(
+                              icon: Icons.shopping_cart_outlined,
+                            ),
+                            controller.totalItems >= 1
+                                ? Positioned(
+                                    right: 0,
+                                    top: 0,
                                     child: AppIcon(
                                       icon: Icons.circle,
                                       size: 20,
                                       iconColor: Colors.transparent,
                                       backGroundColor: AppColors.mainColor,
                                     ),
-                                  ),
-                                )
-                              : Container(),
-                          Get.find<PopularProductController>().totalItems >= 1
-                              ? Positioned(
-                                  right: 4,
-                                  top: 4,
-                                  child: BigText(
-                                    text: Get.find<PopularProductController>()
-                                        .totalItems
-                                        .toString(),
-                                    size: 12,
-                                    color: Colors.white,
-                                  ))
-                              : Container(),
-                        ],
+                                  )
+                                : Container(),
+                            Get.find<PopularProductController>().totalItems >= 1
+                                ? Positioned(
+                                    right: 4,
+                                    top: 4,
+                                    child: BigText(
+                                      text: Get.find<PopularProductController>()
+                                          .totalItems
+                                          .toString(),
+                                      size: 12,
+                                      color: Colors.white,
+                                    ))
+                                : Container(),
+                          ],
+                        ),
                       );
                     },
                   ),

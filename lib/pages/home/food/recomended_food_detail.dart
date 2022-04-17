@@ -44,43 +44,43 @@ class RecommenedFoodDetail extends StatelessWidget {
                   /// AppIcon(icon: Icons.shopping_cart_outlined),
                   GetBuilder<PopularProductController>(
                     builder: (controller) {
-                      return Stack(
-                        // ignore: prefer_const_literals_to_create_immutables
-                        children: [
-                          // ignore: prefer_const_constructors
-                          AppIcon(
-                            icon: Icons.shopping_cart_outlined,
-                          ),
-                          Get.find<PopularProductController>().totalItems >= 1
-                              ? Positioned(
-                                  right: 0,
-                                  top: 0,
-                                  child: GestureDetector(
-                                    onTap: () {
-                                      Get.to(() => CartPage());
-                                    },
+                      return GestureDetector(
+                        onTap: () {
+                          Get.toNamed(RouteHelper.getCartPage());
+                        },
+                        child: Stack(
+                          // ignore: prefer_const_literals_to_create_immutables
+                          children: [
+                            // ignore: prefer_const_constructors
+                            AppIcon(
+                              icon: Icons.shopping_cart_outlined,
+                            ),
+                            Get.find<PopularProductController>().totalItems >= 1
+                                ? Positioned(
+                                    right: 0,
+                                    top: 0,
                                     child: AppIcon(
                                       icon: Icons.circle,
                                       size: 20,
                                       iconColor: Colors.transparent,
                                       backGroundColor: AppColors.mainColor,
                                     ),
-                                  ),
-                                )
-                              : Container(),
-                          Get.find<PopularProductController>().totalItems >= 1
-                              ? Positioned(
-                                  right: 4,
-                                  top: 4,
-                                  child: BigText(
-                                    text: Get.find<PopularProductController>()
-                                        .totalItems
-                                        .toString(),
-                                    size: 12,
-                                    color: Colors.white,
-                                  ))
-                              : Container(),
-                        ],
+                                  )
+                                : Container(),
+                            Get.find<PopularProductController>().totalItems >= 1
+                                ? Positioned(
+                                    right: 4,
+                                    top: 4,
+                                    child: BigText(
+                                      text: Get.find<PopularProductController>()
+                                          .totalItems
+                                          .toString(),
+                                      size: 12,
+                                      color: Colors.white,
+                                    ))
+                                : Container(),
+                          ],
+                        ),
                       );
                     },
                   ),
